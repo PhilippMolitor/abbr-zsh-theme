@@ -86,15 +86,16 @@ _abbr_section_prompt () {
 # git status
 _abbr_badge_git () {
   if $(git branch >/dev/null 2>&1); then
-    local branch="$(git rev-parse --abbrev-ref HEAD)"
-    
-    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} \u00b1$branch"
+    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} \u00b1"
+
+    # branch
+    print -n "$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 
     # untracked
-    [[ "$(git clean -n | wc -l)" -ne "0" ]] && print -n "%{%F{$ABBR_FG_BADGE_GIT_UNTRACKED}%}?%{%f%}"
+    [[ "$(git clean -n 2>/dev/null | wc -l)" -ne "0" ]] && print -n "%{%F{$ABBR_FG_BADGE_GIT_UNTRACKED}%}?%{%f%}"
 
     # dirty
-    $(git diff-index --quiet HEAD) || print -n "%{%F{$ABBR_FG_BADGE_GIT_DIRTY}%}!%{%f%}"
+    $(git diff-index --quiet HEAD >/dev/null 2>&1) || print -n "%{%F{$ABBR_FG_BADGE_GIT_DIRTY}%}!%{%f%}"
 
     print -n " %{%f%k%}"
   fi
