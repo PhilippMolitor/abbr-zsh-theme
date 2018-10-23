@@ -18,6 +18,6 @@ Examples (username is phil):
 * `/home/phil` -> `~`
 * `/home/phil/test/abc` -> `~/t/abc`
 * `/home/phil/.local/share/nano` -> `~/.l/s/nano`
-* `/home/phil_butnotphil` -> `/h/p`
-* `/home/linus/Projects` -> `/h/l/P`
+* `/home/phil_butnotphil/test` -> `/h/p/test`
+* `/home/linus` -> `/h/linus`
 
