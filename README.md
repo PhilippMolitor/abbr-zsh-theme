@@ -1,27 +1,39 @@
 # ABBR ZSH theme
 
-### Current segments
+### Segments
 * Exit code (tick on 0, else exit code) with colorization
 * hostname/username
 * Abbreviated PWD
 * $ or # (privilege)
 
+### Badges
+* Git status (branch name, untracked, dirty)
+* Python virtualenv
 
-### Variables
-|Variable               |Default          |Type      |
-|-----------------------|-----------------|----------|
-|ABBR_FG_RETVAL_GOOD    |white            |zsh color |
-|ABBR_BG_RETVAL_GOOD    |green            |zsh color |
-|ABBR_FG_RETVAL_BAD     |yellow           |zsh color |
-|ABBR_BG_RETVAL_BAD     |black            |zsh color |
-|ABBR_FG_LOGON          |black            |zsh color |
-|ABBR_BG_LOGON          |cyan             |zsh color |
-|ABBR_FG_PWD            |white            |zsh color |
-|ABBR_BG_PWD            |none             |zsh color |
-|ABBR_FG_PROMPT_ROOT    |red              |zsh color |
-|ABBR_BG_PROMPT_ROOT    |none             |zsh color |
-|ABBR_FG_PROMPT_DEFAULT |`$ABBR_BG_LOGON` |zsh color |
-|ABBR_BG_PROMPT_DEFAULT |none             |zsh color |
+
+### Colors
+You can change the prompt colors by changing these variables in your `.zshrc`.
+
+|Variable                    |Default          |
+|----------------------------|-----------------|
+|ABBR_FG_RETVAL_GOOD         |white            |
+|ABBR_BG_RETVAL_GOOD         |green            |
+|ABBR_FG_RETVAL_BAD          |yellow           |
+|ABBR_BG_RETVAL_BAD          |black            |
+|ABBR_FG_LOGON               |black            |
+|ABBR_BG_LOGON               |cyan             |
+|ABBR_FG_PWD                 |white            |
+|ABBR_BG_PWD                 |none             |
+|ABBR_FG_PROMPT_ROOT         |red              |
+|ABBR_BG_PROMPT_ROOT         |none             |
+|ABBR_FG_PROMPT_DEFAULT      |`$ABBR_BG_LOGON` |
+|ABBR_BG_PROMPT_DEFAULT      |none             |
+|ABBR_FG_BADGE_GIT           |yellow           |
+|ABBR_BG_BADGE_GIT           |black            |
+|ABBR_FG_BADGE_GIT_UNTRACKED |red              |
+|ABBR_FG_BADGE_GIT_DIRTY     |red              |
+|ABBR_FG_BADGE_PYTHON_VENV   |blue             |
+|ABBR_BG_BADGE_PYTHON_VENV   |yellow           |
 
 
 ### How does the path abbreviation work?
