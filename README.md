@@ -1,10 +1,27 @@
 # ABBR ZSH theme
 
-### Current segments:
+### Current segments
 * Exit code (tick on 0, else exit code) with colorization
 * hostname/username
 * Abbreviated PWD
 * $ or # (privilege)
+
+
+### Variables
+|Variable               |Default          |Type      |
+|-----------------------|-----------------|----------|
+|ABBR_FG_RETVAL_GOOD    |white            |zsh color |
+|ABBR_BG_RETVAL_GOOD    |green            |zsh color |
+|ABBR_FG_RETVAL_BAD     |yellow           |zsh color |
+|ABBR_BG_RETVAL_BAD     |black            |zsh color |
+|ABBR_FG_LOGON          |black            |zsh color |
+|ABBR_BG_LOGON          |cyan             |zsh color |
+|ABBR_FG_PWD            |white            |zsh color |
+|ABBR_BG_PWD            |none             |zsh color |
+|ABBR_FG_PROMPT_ROOT    |red              |zsh color |
+|ABBR_BG_PROMPT_ROOT    |none             |zsh color |
+|ABBR_FG_PROMPT_DEFAULT |`$ABBR_BG_LOGON` |zsh color |
+|ABBR_BG_PROMPT_DEFAULT |none             |zsh color |
 
 
 ### How does the path abbreviation work?
