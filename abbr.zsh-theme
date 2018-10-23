@@ -16,59 +16,70 @@
 #    Sections
 
 _abbr_section_retval () {
-  local retval="$(print -nP '%?')"
-  
-  if [ "$retval" -eq "0" ]; then
-    echo -n "%F{white}%K{green} \u2713 "
+  local ret="$(print -nP '%?')"
+
+  if [ "$ret" -eq "0" ]; then
+    print -n "%{%F{white}%K{green}%} \u2713 "
   else
-    echo -n "%F{white}%K{red} $(printf "%03d" "$retval") "
+    print -n "%{%F{white}%K{red}%} $ret "
   fi
 
-  echo -n "%f"
+  print -n "%{%f%}"
 }
 
 _abbr_section_logon () {
-  echo -n "%F{white} %m/%n %f%k"
+  print -n "%{%F{white}%} %m/%n %{%f%k%}"
 }
 
 _abbr_section_pwd () {
   local p="$(print -nP '%/')"
 
-  echo -n "%F{black}%K{cyan} $(
-    [[ $p == $HOME/* || $p == $HOME ]] && p="${p#${HOME}}" && echo -n '~'
+  print -n "%{%F{black}%K{cyan}%} "
   
-    for d in ${(s:/:)p}; do
-      [[ "${d:0:1}" == "." ]] && echo -n "/${d:0:2}" || echo -n "/${d:0:1}"
-    done
+  [[ $p == $HOME/* || $p == $HOME ]] && p=${p#${HOME}} && print -n '~'
 
-    [[ "${d:0:1}" == "." ]] && echo -n "${d:2}" || echo -n "${d:1}"
-  ) %f%k"
+  for d in ${(s:/:)p}; do
+    [[ "${d:0:1}" == "." ]] && print -n "/${d:0:2}" || print -n "/${d:0:1}"
+  done
+
+  [[ "${d:0:1}" == "." ]] && print -n "${d:2}" || print -n "${d:1}"
+
+  print -n " %{%f%k%}"
 }
 
 _abbr_section_prompt () {
   if [[ $UID = 0 ]]; then
-    echo "%F{white}%K{black} # "
+    print -n "%{%F{white}%K{black}%} # "
   else
-    echo "%F{black}%K{cyan} $ "
+    print -n "%{%F{black}%K{cyan}%} $ "
   fi
 }
 
 
 ##################
-#     Prompt
+#    Rendering
 
+# assemble prompt components
 _abbr_prompt () {
-  echo -n "$(_abbr_section_retval)"
-  echo -n "$(_abbr_section_logon)"
-  echo -n "$(_abbr_section_pwd)"
-  echo -n "$(_abbr_section_prompt)"
+  _abbr_section_retval
+  _abbr_section_logon
+  _abbr_section_pwd
+  _abbr_section_prompt
 }
 
+# Render the prompt
+_abbr_render () {
+  PROMPT="%{%f%b%k%}$(_abbr_prompt)%{%f%b%k%} "
+}
 
-##################
-#    ZSH vars
+# Add render hook
+_abbr_setup () {
+  prompt_opts=(cr percent sp subst)
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _abbr_render
+}
 
-PROMPT="%f%b%k$(_abbr_prompt)%f%b%k"
-RPROMPT=''
+# Run the setup
+_abbr_setup
 
 # vim: syntax=zsh
