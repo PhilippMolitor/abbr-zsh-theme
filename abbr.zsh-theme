@@ -9,7 +9,8 @@
 #  ABBR ZSH theme
 #
 #  Author: ... Philipp Molitor <http://phils-lab.io>                                 
-#  
+#  Git: ...... https://github.com/philslab/abbr-zsh-theme
+#
 
 
 ##################
@@ -17,8 +18,8 @@
 
 ABBR_FG_RETVAL_GOOD="white"
 ABBR_BG_RETVAL_GOOD="green"
-ABBR_FG_RETVAL_BAD="red"
-ABBR_BG_RETVAL_BAD="white"
+ABBR_FG_RETVAL_BAD="yellow"
+ABBR_BG_RETVAL_BAD="black"
 
 ABBR_FG_LOGON="black"
 ABBR_BG_LOGON="cyan"
