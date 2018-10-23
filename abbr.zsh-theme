@@ -13,28 +13,48 @@
 
 
 ##################
+#    Variables
+
+ABBR_FG_RETVAL_GOOD="white"
+ABBR_BG_RETVAL_GOOD="green"
+ABBR_FG_RETVAL_BAD="red"
+ABBR_BG_RETVAL_BAD="white"
+
+ABBR_FG_LOGON="black"
+ABBR_BG_LOGON="cyan"
+
+ABBR_FG_PWD="white"
+ABBR_BG_PWD=""
+
+ABBR_FG_PROMPT_ROOT="red"
+ABBR_BG_PROMPT_ROOT=""
+ABBR_FG_PROMPT_DEFAULT="$ABBR_BG_LOGON"
+ABBR_BG_PROMPT_DEFAULT=""
+
+
+##################
 #    Sections
 
 _abbr_section_retval () {
   local ret="$(print -nP '%?')"
 
   if [ "$ret" -eq "0" ]; then
-    print -n "%{%F{white}%K{green}%} \u2713 "
+    print -n "%{%F{$ABBR_FG_RETVAL_GOOD}%K{$ABBR_BG_RETVAL_GOOD}%} \u2713 "
   else
-    print -n "%{%F{white}%K{red}%} $ret "
+    print -n "%{%F{$ABBR_FG_RETVAL_BAD}%K{$ABBR_BG_RETVAL_BAD}%} $ret "
   fi
 
-  print -n "%{%f%}"
+  print -n "%{%f%k%}"
 }
 
 _abbr_section_logon () {
-  print -n "%{%F{white}%} %m/%n %{%f%k%}"
+  print -n "%{%F{$ABBR_FG_LOGON}%K{$ABBR_BG_LOGON}%} %m/%n %{%f%k%}"
 }
 
 _abbr_section_pwd () {
   local p="$(print -nP '%/')"
 
-  print -n "%{%F{black}%K{cyan}%} "
+  print -n "%{%F{$ABBR_FG_PWD}%K{$ABBR_BG_PWD}%} "
   
   [[ $p == $HOME/* || $p == $HOME ]] && p=${p#${HOME}} && print -n '~'
 
@@ -44,14 +64,14 @@ _abbr_section_pwd () {
 
   [[ "${d:0:1}" == "." ]] && print -n "${d:2}" || print -n "${d:1}"
 
-  print -n " %{%f%k%}"
+  print -n "%{%f%k%}"
 }
 
 _abbr_section_prompt () {
   if [[ $UID = 0 ]]; then
-    print -n "%{%F{white}%K{black}%} # "
+    print -n "%{%F{$ABBR_FG_PROMPT_ROOT}%K{$ABBR_BG_PROMPT_ROOT}%}#"
   else
-    print -n "%{%F{black}%K{cyan}%} $ "
+    print -n "%{%F{$ABBR_FG_PROMPT_DEFAULT}%K{$ABBR_BG_PROMPT_DEFAULT}%}$"
   fi
 }
 
