@@ -8,7 +8,7 @@
 #  
 #  ABBR ZSH theme
 #
-#  Author: ... Phil's Lab <http://phils-lab.io>                                 
+#  Author: ... Philipp Molitor <http://phils-lab.io>                                 
 #  
 
 
