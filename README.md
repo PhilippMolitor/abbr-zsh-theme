@@ -1,6 +1,6 @@
 # ABBR ZSH theme
 
-### Current segements:
+### Current segments:
 * Exit code (tick on 0, else exit code) with colorization
 * hostname/username
 * Abbreviated PWD
