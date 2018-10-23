@@ -1,10 +1,15 @@
 # ABBR ZSH theme
 
+### Screenshots
+![Screenshot](./screenshots/01.jpg)
+
+
 ### Segments
 * Exit code (tick on 0, else exit code) with colorization
 * hostname/username
 * Abbreviated PWD
 * $ or # (privilege)
+
 
 ### Badges
 * Git status (branch name, untracked, dirty)
