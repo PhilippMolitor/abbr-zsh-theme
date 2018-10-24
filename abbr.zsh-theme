@@ -108,21 +108,23 @@ _abbr_badge_venv () {
 _abbr_badge_rust () {
   local p="$(print -nP '%/')"
 
-  while [[ $p != "" ]] && [[ $p != "/" ]]; do
-    if [[ -f "$p/Cargo.toml" ]]; then
-      local rust_version="$(rustc --version | cut -d' ' -f2)"
+  if (( $+commands[rustc] )); then
+    while [[ $p != "" ]] && [[ $p != "/" ]]; do
+      if [[ -f "$p/Cargo.toml" ]]; then
+        local rust_version="$(rustc --version | cut -d' ' -f2)"
 
-      print -n "%{%F{$ABBR_FG_BADGE_RUST}%K{$ABBR_BG_BADGE_RUST}%} $rust_version %{%f%k%}"
-      return
-    fi
+        print -n "%{%F{$ABBR_FG_BADGE_RUST}%K{$ABBR_BG_BADGE_RUST}%} $rust_version %{%f%k%}"
+        return
+      fi
 
-    p="${${p%/}%/*}"
-  done
+      p="${${p%/}%/*}"
+    done
+  fi
 }
 
 # git status
 _abbr_badge_git () {
-  if $(git branch >/dev/null 2>&1); then
+  if (( $+commands[git] )) && $(git branch >/dev/null 2>&1); then
     print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} $ABBR_BADGE_GIT_SYMBOL"
 
     # branch
