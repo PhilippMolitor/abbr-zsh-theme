@@ -127,8 +127,8 @@ _abbr_prompt () {
 
 # assemble badges
 _abbr_badges () {
-  _abbr_badge_git
   _abbr_badge_venv
+  _abbr_badge_git
 }
 
 # render the prompt
