@@ -44,8 +44,8 @@ You can change the prompt colors by changing these variables in your `.zshrc`.
 |ABBR_BG_PROMPT_ROOT         |none             |
 |ABBR_FG_PROMPT_DEFAULT      |`$ABBR_BG_LOGON` |
 |ABBR_BG_PROMPT_DEFAULT      |none             |
-|ABBR_FG_BADGE_PYTHON_VENV   |blue             |
-|ABBR_BG_BADGE_PYTHON_VENV   |yellow           |
+|ABBR_FG_BADGE_PYTHON        |blue             |
+|ABBR_BG_BADGE_PYTHON        |yellow           |
 |ABBR_FG_BADGE_RUST          |white            |
 |ABBR_BG_BADGE_RUST          |blue             |
 |ABBR_FG_BADGE_GIT           |yellow           |
