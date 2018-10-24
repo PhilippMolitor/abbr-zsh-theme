@@ -39,6 +39,7 @@ ABBR_BG_BADGE_PYTHON_VENV="${ABBR_BG_BADGE_PYTHON_VENV:-yellow}"
 ##################
 #    Sections
 
+# return value of last command
 _abbr_section_retval () {
   local ret="$(print -nP '%?')"
 
@@ -51,10 +52,12 @@ _abbr_section_retval () {
   print -n "%{%f%k%}"
 }
 
+# logon information: hostname/username
 _abbr_section_logon () {
   print -n "%{%F{$ABBR_FG_LOGON}%K{$ABBR_BG_LOGON}%} %m/%n %{%f%k%}"
 }
 
+# current working directory, abbreviated (the magic part)
 _abbr_section_pwd () {
   local p="$(print -nP '%/')"
 
@@ -71,6 +74,7 @@ _abbr_section_pwd () {
   print -n "%{%f%k%}"
 }
 
+# prompt end, $ for user, # for root
 _abbr_section_prompt () {
   if [[ $UID = 0 ]]; then
     print -n "%{%F{$ABBR_FG_PROMPT_ROOT}%K{$ABBR_BG_PROMPT_ROOT}%}#"
@@ -121,19 +125,19 @@ _abbr_prompt () {
   _abbr_section_prompt
 }
 
-# Assemble badges
+# assemble badges
 _abbr_badges () {
   _abbr_badge_git
   _abbr_badge_venv
 }
 
-# Render the prompt
+# render the prompt
 _abbr_render () {
   PROMPT="%{%f%b%k%}$(_abbr_prompt)%{%f%b%k%} "
   RPROMPT="%{%f%b%k%}$(_abbr_badges)%{%f%b%k%}"
 }
 
-# Add render hook
+# add render hook
 _abbr_setup () {
   prompt_opts=(cr percent sp subst)
   autoload -Uz add-zsh-hook
@@ -141,7 +145,7 @@ _abbr_setup () {
   add-zsh-hook precmd _abbr_render
 }
 
-# Run the setup
+# run the setup
 _abbr_setup
 
 # vim: syntax=zsh
