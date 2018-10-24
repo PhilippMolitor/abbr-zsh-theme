@@ -100,7 +100,7 @@ _abbr_section_prompt () {
 
 # python virtualenv
 _abbr_badge_venv () {
-  if [[ -n $VIRTUAL_ENV ]]; then
+  if [[ -n $PIPENV_ACTIVE ]] || [[ -n $VIRTUAL_ENV ]]; then
     local env_name="$(echo $VIRTUAL_ENV | rev | cut -d'/' -f1 | rev)"
     print -n "%{%F{$ABBR_FG_BADGE_PYTHON}%K{$ABBR_BG_BADGE_PYTHON}%} $ABBR_BADGE_PYTHON_PREFIX$env_name %{%f%k%}"
   fi
