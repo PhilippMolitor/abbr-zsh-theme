@@ -18,11 +18,13 @@
 
 
 ### Variables
-|Variable                        |Default   |
-|--------------------------------|----------|
-|ABBR_BADGE_GIT_SYMBOL           |`\u00b1`  |
-|ABBR_BADGE_GIT_UNTRACKED_SYMBOL |?         |
-|ABBR_BADGE_GIT_DIRTY_SYMBOL     |!         |
+|Variable                        |Default  |
+|--------------------------------|---------|
+|ABBR_BADGE_PYTHON_PREFIX        |`empty`  |
+|ABBR_BADGE_RUST_PREFIX          |`empty`  |
+|ABBR_BADGE_GIT_PREFIX           |`\u00b1` |
+|ABBR_BADGE_GIT_UNTRACKED_SYMBOL |?        |
+|ABBR_BADGE_GIT_DIRTY_SYMBOL     |!        |
 
 
 ### Colors

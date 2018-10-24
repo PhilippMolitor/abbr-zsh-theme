@@ -15,7 +15,9 @@
 
 ##################
 #    Variables
-ABBR_BADGE_GIT_SYMBOL="${ABBR_BADGE_GIT_SYMBOL:-\u00b1}"
+ABBR_BADGE_PYTHON_PREFIX="${ABBR_BADGE_PYTHON_PREFIX:-}"
+ABBR_BADGE_RUST_PREFIX="${ABBR_BADGE_RUST_PREFIX:-}"
+ABBR_BADGE_GIT_PREFIX="${ABBR_BADGE_GIT_PREFIX:-\u00b1}"
 ABBR_BADGE_GIT_UNTRACKED_SYMBOL="${ABBR_BADGE_GIT_UNTRACKED_SYMBOL:-?}"
 ABBR_BADGE_GIT_DIRTY_SYMBOL="${ABBR_BADGE_GIT_DIRTY_SYMBOL:-!}"
 
@@ -100,7 +102,7 @@ _abbr_section_prompt () {
 _abbr_badge_venv () {
   if [[ -n $VIRTUAL_ENV ]]; then
     local env_name="$(echo $VIRTUAL_ENV | rev | cut -d'/' -f1 | rev)"
-    print -n "%{%F{$ABBR_FG_BADGE_PYTHON_VENV}%K{$ABBR_BG_BADGE_PYTHON_VENV}%} $env_name %{%f%k%}"
+    print -n "%{%F{$ABBR_FG_BADGE_PYTHON_VENV}%K{$ABBR_BG_BADGE_PYTHON_VENV}%} $ABBR_BADGE_PYTHON_PREFIX$env_name %{%f%k%}"
   fi
 }
 
@@ -113,7 +115,7 @@ _abbr_badge_rust () {
       if [[ -f "$p/Cargo.toml" ]]; then
         local rust_version="$(rustc --version | cut -d' ' -f2)"
 
-        print -n "%{%F{$ABBR_FG_BADGE_RUST}%K{$ABBR_BG_BADGE_RUST}%} $rust_version %{%f%k%}"
+        print -n "%{%F{$ABBR_FG_BADGE_RUST}%K{$ABBR_BG_BADGE_RUST}%} $ABBR_BADGE_RUST_PREFIX$rust_version %{%f%k%}"
         return
       fi
 
@@ -125,7 +127,7 @@ _abbr_badge_rust () {
 # git status
 _abbr_badge_git () {
   if (( $+commands[git] )) && $(git branch >/dev/null 2>&1); then
-    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} $ABBR_BADGE_GIT_SYMBOL"
+    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} $ABBR_BADGE_GIT_PREFIX"
 
     # branch
     print -n "$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
