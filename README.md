@@ -14,6 +14,7 @@
 ### Badges
 * Git status (branch name, untracked, dirty)
 * Python virtualenv
+* Rust version (detects Cargo.toml)
 
 
 ### Colors
@@ -39,6 +40,9 @@ You can change the prompt colors by changing these variables in your `.zshrc`.
 |ABBR_FG_BADGE_GIT_DIRTY     |red              |
 |ABBR_FG_BADGE_PYTHON_VENV   |blue             |
 |ABBR_BG_BADGE_PYTHON_VENV   |yellow           |
+|ABBR_FG_BADGE_RUST          |white            |
+|ABBR_BG_BADGE_RUST          |blue             |
+
 
 
 ### How does the path abbreviation work?

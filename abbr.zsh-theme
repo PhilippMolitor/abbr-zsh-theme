@@ -34,6 +34,8 @@ ABBR_FG_BADGE_GIT_UNTRACKED="${ABBR_FG_BADGE_GIT_UNTRACKED:-red}"
 ABBR_FG_BADGE_GIT_DIRTY="${ABBR_FG_BADGE_GIT_DIRTY:-red}"
 ABBR_FG_BADGE_PYTHON_VENV="${ABBR_FG_BADGE_PYTHON_VENV:-blue}"
 ABBR_BG_BADGE_PYTHON_VENV="${ABBR_BG_BADGE_PYTHON_VENV:-yellow}"
+ABBR_FG_BADGE_RUST="${ABBR_FG_BADGE_RUST:-white}"
+ABBR_BG_BADGE_RUST="${ABBR_BG_BADGE_RUST:-blue}"
 
 
 ##################
@@ -113,6 +115,21 @@ _abbr_badge_venv () {
   fi
 }
 
+# rust / cargo
+_abbr_badge_rust () {
+  local p="$(print -nP '%/')"
+
+  while [[ $p != "" ]] && [[ $p != "/" ]]; do
+    if [[ -f "$p/Cargo.toml" ]]; then
+      local rust_version="$(rustc --version | cut -d' ' -f2)"
+
+      print -n "%{%F{$ABBR_FG_BADGE_RUST}%K{$ABBR_BG_BADGE_RUST}%} $rust_version %{%f%k%}"
+      return
+    fi
+
+    p="${${p%/}%/*}"
+  done
+}
 
 ##################
 #    Rendering
@@ -128,6 +145,7 @@ _abbr_prompt () {
 # assemble badges
 _abbr_badges () {
   _abbr_badge_venv
+  _abbr_badge_rust
   _abbr_badge_git
 }
 
