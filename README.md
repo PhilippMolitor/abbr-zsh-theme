@@ -17,6 +17,14 @@
 * Git status (branch name, untracked, dirty)
 
 
+### Variables
+|Variable                        |Default   |
+|--------------------------------|----------|
+|ABBR_BADGE_GIT_SYMBOL           |`\u00b1`  |
+|ABBR_BADGE_GIT_UNTRACKED_SYMBOL |?         |
+|ABBR_BADGE_GIT_DIRTY_SYMBOL     |!         |
+
+
 ### Colors
 You can change the prompt colors by changing these variables in your `.zshrc`.
 

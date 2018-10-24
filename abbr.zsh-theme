@@ -15,6 +15,13 @@
 
 ##################
 #    Variables
+ABBR_BADGE_GIT_SYMBOL="${ABBR_BADGE_GIT_SYMBOL:-\u00b1}"
+ABBR_BADGE_GIT_UNTRACKED_SYMBOL="${ABBR_BADGE_GIT_UNTRACKED_SYMBOL:-?}"
+ABBR_BADGE_GIT_DIRTY_SYMBOL="${ABBR_BADGE_GIT_DIRTY_SYMBOL:-!}"
+
+
+##################
+#    Colors
 
 ABBR_FG_RETVAL_GOOD="${ABBR_FG_RETVAL_GOOD:-white}"
 ABBR_BG_RETVAL_GOOD="${ABBR_BG_RETVAL_GOOD:-green}"
@@ -116,16 +123,16 @@ _abbr_badge_rust () {
 # git status
 _abbr_badge_git () {
   if $(git branch >/dev/null 2>&1); then
-    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} \u00b1"
+    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} $ABBR_BADGE_GIT_SYMBOL"
 
     # branch
     print -n "$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 
     # untracked
-    [[ "$(git clean -n 2>/dev/null | wc -l)" -ne "0" ]] && print -n "%{%F{$ABBR_FG_BADGE_GIT_UNTRACKED}%}?%{%f%}"
+    [[ "$(git clean -n 2>/dev/null | wc -l)" -ne "0" ]] && print -n "%{%F{$ABBR_FG_BADGE_GIT_UNTRACKED}%}$ABBR_BADGE_GIT_UNTRACKED_SYMBOL%{%f%}"
 
     # dirty
-    $(git diff-index --quiet HEAD >/dev/null 2>&1) || print -n "%{%F{$ABBR_FG_BADGE_GIT_DIRTY}%}!%{%f%}"
+    $(git diff-index --quiet HEAD >/dev/null 2>&1) || print -n "%{%F{$ABBR_FG_BADGE_GIT_DIRTY}%}$ABBR_BADGE_GIT_DIRTY_SYMBOL%{%f%}"
 
     print -n " %{%f%k%}"
   fi
