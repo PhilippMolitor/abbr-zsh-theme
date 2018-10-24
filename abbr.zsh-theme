@@ -28,14 +28,14 @@ ABBR_FG_PROMPT_ROOT="${ABBR_FG_PROMPT_ROOT:-red}"
 ABBR_BG_PROMPT_ROOT="${ABBR_BG_PROMPT_ROOT:-none}"
 ABBR_FG_PROMPT_DEFAULT="${ABBR_BG_LOGON}"
 ABBR_BG_PROMPT_DEFAULT="${ABBR_BG_PROMPT_DEFAULT:-none}"
-ABBR_FG_BADGE_GIT="${ABBR_FG_BADGE_GIT:-yellow}"
-ABBR_BG_BADGE_GIT="${ABBR_BG_BADGE_GIT:-black}"
-ABBR_FG_BADGE_GIT_UNTRACKED="${ABBR_FG_BADGE_GIT_UNTRACKED:-red}"
-ABBR_FG_BADGE_GIT_DIRTY="${ABBR_FG_BADGE_GIT_DIRTY:-red}"
 ABBR_FG_BADGE_PYTHON_VENV="${ABBR_FG_BADGE_PYTHON_VENV:-blue}"
 ABBR_BG_BADGE_PYTHON_VENV="${ABBR_BG_BADGE_PYTHON_VENV:-yellow}"
 ABBR_FG_BADGE_RUST="${ABBR_FG_BADGE_RUST:-white}"
 ABBR_BG_BADGE_RUST="${ABBR_BG_BADGE_RUST:-blue}"
+ABBR_FG_BADGE_GIT="${ABBR_FG_BADGE_GIT:-yellow}"
+ABBR_BG_BADGE_GIT="${ABBR_BG_BADGE_GIT:-black}"
+ABBR_FG_BADGE_GIT_UNTRACKED="${ABBR_FG_BADGE_GIT_UNTRACKED:-red}"
+ABBR_FG_BADGE_GIT_DIRTY="${ABBR_FG_BADGE_GIT_DIRTY:-red}"
 
 
 ##################
@@ -89,24 +89,6 @@ _abbr_section_prompt () {
 ##################
 #     Badges
 
-# git status
-_abbr_badge_git () {
-  if $(git branch >/dev/null 2>&1); then
-    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} \u00b1"
-
-    # branch
-    print -n "$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
-
-    # untracked
-    [[ "$(git clean -n 2>/dev/null | wc -l)" -ne "0" ]] && print -n "%{%F{$ABBR_FG_BADGE_GIT_UNTRACKED}%}?%{%f%}"
-
-    # dirty
-    $(git diff-index --quiet HEAD >/dev/null 2>&1) || print -n "%{%F{$ABBR_FG_BADGE_GIT_DIRTY}%}!%{%f%}"
-
-    print -n " %{%f%k%}"
-  fi
-}
-
 # python virtualenv
 _abbr_badge_venv () {
   if [[ -n $VIRTUAL_ENV ]]; then
@@ -130,6 +112,25 @@ _abbr_badge_rust () {
     p="${${p%/}%/*}"
   done
 }
+
+# git status
+_abbr_badge_git () {
+  if $(git branch >/dev/null 2>&1); then
+    print -n "%{%F{$ABBR_FG_BADGE_GIT}%K{$ABBR_BG_BADGE_GIT}%} \u00b1"
+
+    # branch
+    print -n "$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+
+    # untracked
+    [[ "$(git clean -n 2>/dev/null | wc -l)" -ne "0" ]] && print -n "%{%F{$ABBR_FG_BADGE_GIT_UNTRACKED}%}?%{%f%}"
+
+    # dirty
+    $(git diff-index --quiet HEAD >/dev/null 2>&1) || print -n "%{%F{$ABBR_FG_BADGE_GIT_DIRTY}%}!%{%f%}"
+
+    print -n " %{%f%k%}"
+  fi
+}
+
 
 ##################
 #    Rendering

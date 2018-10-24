@@ -12,9 +12,9 @@
 
 
 ### Badges
-* Git status (branch name, untracked, dirty)
 * Python virtualenv
 * Rust version (detects Cargo.toml)
+* Git status (branch name, untracked, dirty)
 
 
 ### Colors
@@ -34,14 +34,14 @@ You can change the prompt colors by changing these variables in your `.zshrc`.
 |ABBR_BG_PROMPT_ROOT         |none             |
 |ABBR_FG_PROMPT_DEFAULT      |`$ABBR_BG_LOGON` |
 |ABBR_BG_PROMPT_DEFAULT      |none             |
-|ABBR_FG_BADGE_GIT           |yellow           |
-|ABBR_BG_BADGE_GIT           |black            |
-|ABBR_FG_BADGE_GIT_UNTRACKED |red              |
-|ABBR_FG_BADGE_GIT_DIRTY     |red              |
 |ABBR_FG_BADGE_PYTHON_VENV   |blue             |
 |ABBR_BG_BADGE_PYTHON_VENV   |yellow           |
 |ABBR_FG_BADGE_RUST          |white            |
 |ABBR_BG_BADGE_RUST          |blue             |
+|ABBR_FG_BADGE_GIT           |yellow           |
+|ABBR_BG_BADGE_GIT           |black            |
+|ABBR_FG_BADGE_GIT_UNTRACKED |red              |
+|ABBR_FG_BADGE_GIT_DIRTY     |red              |
 
 
 
