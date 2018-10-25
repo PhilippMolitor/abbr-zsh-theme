@@ -4,6 +4,12 @@
 ![Screenshot](./screenshots/01.jpg)
 
 
+### Information
+If you like the theme, or even better, you are using it, please consider giving
+this repository a star to let me know! :smiley:<br>
+Also, if you have got any improvements to the theme, feel free to send a pull request!
+
+
 ### Segments
 * Exit code (tick on 0, else exit code) with colorization
 * hostname/username
