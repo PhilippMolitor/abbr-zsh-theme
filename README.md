@@ -12,7 +12,7 @@
 
 
 ### Badges
-* Python virtualenv
+* Python (works with `virtualenv`, `venv` and `Pipenv` shell)
 * Rust version (detects Cargo.toml)
 * Git status (branch name, untracked, dirty)
 
