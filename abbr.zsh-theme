@@ -74,13 +74,17 @@ _abbr_section_pwd () {
 
   print -n "%{%F{$ABBR_FG_PWD}%K{$ABBR_BG_PWD}%} "
   
-  [[ $p == $HOME/* || $p == $HOME ]] && p=${p#${HOME}} && print -n '~'
+  if [[ $p == / ]]; then
+    print -n '/'
+  else
+    [[ $p == $HOME/* || $p == $HOME ]] && p=${p#${HOME}} && print -n '~'
 
-  for d in ${(s:/:)p}; do
-    [[ "${d:0:1}" == "." ]] && print -n "/${d:0:2}" || print -n "/${d:0:1}"
-  done
+    for d in ${(s:/:)p}; do
+      [[ "${d:0:1}" == "." ]] && print -n "/${d:0:2}" || print -n "/${d:0:1}"
+    done
 
-  [[ "${d:0:1}" == "." ]] && print -n "${d:2}" || print -n "${d:1}"
+    [[ "${d:0:1}" == "." ]] && print -n "${d:2}" || print -n "${d:1}"
+  fi
 
   print -n "%{%f%k%}"
 }
