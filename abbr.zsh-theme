@@ -87,7 +87,7 @@ _abbr_section_pwd () {
 
 # prompt end, $ for user, # for root
 _abbr_section_prompt () {
-  if [[ $UID = 0 ]]; then
+  if [[ $UID == 0 ]]; then
     print -n "%{%F{$ABBR_FG_PROMPT_ROOT}%K{$ABBR_BG_PROMPT_ROOT}%}#"
   else
     print -n "%{%F{$ABBR_FG_PROMPT_DEFAULT}%K{$ABBR_BG_PROMPT_DEFAULT}%}$"
@@ -100,7 +100,7 @@ _abbr_section_prompt () {
 
 # python virtualenv
 _abbr_badge_venv () {
-  if [[ -n $PIPENV_ACTIVE ]] || [[ -n $VIRTUAL_ENV ]]; then
+  if [[ -n $VIRTUAL_ENV ]]; then
     local env_name="$(echo $VIRTUAL_ENV | rev | cut -d'/' -f1 | rev)"
     print -n "%{%F{$ABBR_FG_BADGE_PYTHON}%K{$ABBR_BG_BADGE_PYTHON}%} $ABBR_BADGE_PYTHON_PREFIX$env_name %{%f%k%}"
   fi
@@ -108,9 +108,9 @@ _abbr_badge_venv () {
 
 # rust / cargo
 _abbr_badge_rust () {
-  local p="$(print -nP '%/')"
-
   if (( $+commands[rustc] )); then
+    local p="$(print -nP '%/')"
+
     while [[ $p != "" ]] && [[ $p != "/" ]]; do
       if [[ -f "$p/Cargo.toml" ]]; then
         local rust_version="$(rustc --version | cut -d' ' -f2)"
