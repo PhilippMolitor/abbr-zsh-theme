@@ -71,22 +71,21 @@ _abbr_section_logon () {
 # current working directory, abbreviated (the magic part)
 _abbr_section_pwd () {
   local p="$(print -nP '%/')"
+  local o=""
 
-  print -n "%{%F{$ABBR_FG_PWD}%K{$ABBR_BG_PWD}%} "
-  
   if [[ $p == / ]]; then
-    print -n '/'
+    o+='/'
   else
-    [[ $p == $HOME/* || $p == $HOME ]] && p=${p#${HOME}} && print -n '~'
+    [[ $p == $HOME/* || $p == $HOME ]] && p=${p#${HOME}} && o+='~'
 
     for d in ${(s:/:)p}; do
-      [[ "${d:0:1}" == "." ]] && print -n "/${d:0:2}" || print -n "/${d:0:1}"
+      [[ "${d:0:1}" == "." ]] && o+="/${d:0:2}" || o+="/${d:0:1}"
     done
 
-    [[ "${d:0:1}" == "." ]] && print -n "${d:2}" || print -n "${d:1}"
+    [[ "${d:0:1}" == "." ]] && o+="${d:2}" || o+="${d:1}"
   fi
 
-  print -n "%{%f%k%}"
+  print -n "%{%F{$ABBR_FG_PWD}%K{$ABBR_BG_PWD}%} $o%{%f%k%}"
 }
 
 # prompt end, $ for user, # for root
@@ -167,7 +166,7 @@ _abbr_badges () {
 
 # render the prompt
 _abbr_render () {
-  PROMPT="%{%f%b%k%}$(_abbr_prompt)%{%f%b%k%} "
+  PROMPT="%{%f%b%k%}$(_abbr_prompt)%{%f%b%k%}"
   RPROMPT="%{%f%b%k%}$(_abbr_badges)%{%f%b%k%}"
 }
 
