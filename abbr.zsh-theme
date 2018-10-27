@@ -166,7 +166,7 @@ _abbr_badges () {
 
 # render the prompt
 _abbr_render () {
-  PROMPT="%{%f%b%k%}$(_abbr_prompt)%{%f%b%k%}"
+  PROMPT="%{%f%b%k%}$(_abbr_prompt)%{%f%b%k%} "
   RPROMPT="%{%f%b%k%}$(_abbr_badges)%{%f%b%k%}"
 }
 
