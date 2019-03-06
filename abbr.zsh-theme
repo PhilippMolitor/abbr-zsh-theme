@@ -72,6 +72,7 @@ _abbr_section_logon () {
 _abbr_section_pwd () {
   local p="$(print -nP '%/')"
   local o=""
+  local d=""
 
   if [[ $p == / ]]; then
     o+='/'
